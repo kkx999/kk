@@ -31,7 +31,19 @@
         "url": "https://suno.com",
         "desc": "AI 音乐生成神器",
         "new": true
-      }
+      },
+      {
+        "name": "Kimi 智能助手",
+        "url": "https://kimi.moonshot.cn",
+        "desc": "支持超长文本分析",
+        "new": true
+      },
+      {
+        "name": "Kimi 智能助手",
+        "url": "https://kimi.moonshot.cn",
+        "desc": "支持超长文本分析",
+        "new": true
+      },
     ]
   },
   {
