@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KK导航</title>
+    <title>My Nav</title>
     <style>
-        /* --- 1. 定义变量 (Apple 风格配色) --- */
+        /* --- 变量定义 --- */
         :root {
-            /* 浅色模式 */
             --bg-color: #F5F5F7;
             --card-bg: #FFFFFF;
             --text-main: #1D1D1F;
@@ -15,10 +14,10 @@
             --border-color: rgba(0,0,0,0.04);
             --shadow: 0 4px 12px rgba(0,0,0,0.05);
             --hover-bg: #f5f5f7;
+            --badge-bg: #FF3B30; /* 苹果红 */
         }
 
         [data-theme="dark"] {
-            /* 深色模式 */
             --bg-color: #000000;
             --card-bg: #1C1C1E;
             --text-main: #F5F5F7;
@@ -26,69 +25,52 @@
             --border-color: rgba(255,255,255,0.1);
             --shadow: 0 4px 12px rgba(0,0,0,0.2);
             --hover-bg: #2C2C2E;
+            --badge-bg: #FF453A; /* 深色模式下的苹果红 */
         }
 
-        /* --- 2. 全局样式 --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             padding: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding-top: 20px; /* 稍微减少顶部留白 */
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding-top: 20px; }
 
-        /* --- 3. 头部 & 切换按钮 --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px; /* 增加底部间距，让标题和内容区分开 */
+            margin-bottom: 60px;
             padding: 0 10px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
+        .logo { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.5px; }
 
-        /* 切换按钮样式 */
         .theme-toggle {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: var(--shadow);
             color: var(--text-main);
+            transition: transform 0.2s;
         }
-        
         .theme-toggle:hover { transform: scale(1.05); }
         .theme-toggle svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* --- 4. 内容区域 --- */
+        /* --- 核心内容 --- */
         .category-title {
             font-size: 1.3rem;
             font-weight: 600;
             margin: 40px 0 20px 0;
             opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 5px; /* 对齐微调 */
+            display: flex; align-items: center; gap: 8px; padding-left: 5px;
         }
 
         .grid {
@@ -104,11 +86,10 @@
             padding: 20px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: flex; flex-direction: column; justify-content: center;
             height: 80px;
+            transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+            position: relative; /* 为了定位可能需要的元素 */
         }
 
         .card:hover {
@@ -117,20 +98,34 @@
             box-shadow: var(--shadow);
         }
 
-        .card-name {
-            font-size: 16px;
-            font-weight: 500;
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 4px;
+        }
+
+        .card-name { font-size: 16px; font-weight: 500; }
+
+        /* --- NEW 标签样式 --- */
+        .badge {
+            font-size: 10px;
+            background-color: var(--badge-bg);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+            vertical-align: middle;
         }
 
         .card-desc {
             font-size: 13px;
             color: var(--text-sub);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-
+        
         #loading { text-align: center; padding: 40px; color: var(--text-sub); }
     </style>
 </head>
@@ -139,7 +134,7 @@
 <div class="container">
     <header>
         <div class="logo">My Nav</div>
-        <button class="theme-toggle" id="themeToggle" title="切换模式">
+        <button class="theme-toggle" id="themeToggle">
             <svg id="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000 1.41.996.996 0 001.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06z"/></svg>
             <svg id="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
         </button>
@@ -150,54 +145,39 @@
 </div>
 
 <script>
-    // --- 逻辑 1: 主题切换 ---
+    // Theme Logic
     const toggleBtn = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('icon-sun');
     const moonIcon = document.getElementById('icon-moon');
     const htmlEl = document.documentElement;
-
+    
     const savedTheme = localStorage.getItem('theme');
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
+    if (savedTheme === 'dark' || (!savedTheme && systemDark)) setTheme('dark');
+    else setTheme('light');
 
     toggleBtn.addEventListener('click', () => {
-        const currentTheme = htmlEl.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
+        setTheme(htmlEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
     });
 
     function setTheme(theme) {
         htmlEl.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        if (theme === 'dark') {
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-        } else {
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-        }
+        sunIcon.style.display = theme === 'dark' ? 'none' : 'block';
+        moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
     }
 
-    // --- 逻辑 2: 加载数据 ---
+    // Data Logic
     fetch('data.json')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             const contentDiv = document.getElementById('content');
             document.getElementById('loading').style.display = 'none';
 
             data.forEach(group => {
                 const section = document.createElement('div');
+                section.innerHTML = `<div class="category-title"><span>${group.icon}</span> ${group.category}</div>`;
                 
-                const title = document.createElement('div');
-                title.className = 'category-title';
-                title.innerHTML = `<span>${group.icon}</span> ${group.category}`;
-                section.appendChild(title);
-
                 const grid = document.createElement('div');
                 grid.className = 'grid';
 
@@ -206,8 +186,17 @@
                     card.href = link.url;
                     card.className = 'card';
                     card.target = "_blank";
+                    
+                    // 核心逻辑：检查是否带有 "new": true 属性
+                    let badgeHtml = '';
+                    if (link.new) {
+                        badgeHtml = '<span class="badge">NEW</span>';
+                    }
+
                     card.innerHTML = `
-                        <div class="card-name">${link.name}</div>
+                        <div class="card-name">
+                            ${link.name} ${badgeHtml}
+                        </div>
                         <div class="card-desc">${link.desc || ''}</div>
                     `;
                     grid.appendChild(card);
@@ -216,9 +205,7 @@
                 section.appendChild(grid);
                 contentDiv.appendChild(section);
             });
-        })
-        .catch(err => console.error(err));
+        });
 </script>
-
 </body>
 </html>
