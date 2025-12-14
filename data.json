@@ -1,0 +1,28 @@
+[
+  {
+    "category": "常用工具",
+    "icon": "🔧",
+    "links": [
+      { "name": "Google", "url": "https://www.google.com", "desc": "全球最大的搜索引擎" },
+      { "name": "ChatGPT", "url": "https://chat.openai.com", "desc": "最强 AI 助手" },
+      { "name": "GitHub", "url": "https://github.com", "desc": "代码托管平台" }
+    ]
+  },
+  {
+    "category": "影音娱乐",
+    "icon": "🎬",
+    "links": [
+      { "name": "YouTube", "url": "https://www.youtube.com", "desc": "视频分享网站" },
+      { "name": "Bilibili", "url": "https://www.bilibili.com", "desc": "哔哩哔哩干杯" },
+      { "name": "Netflix", "url": "https://www.netflix.com", "desc": "流媒体服务" }
+    ]
+  },
+  {
+    "category": "学习资源",
+    "icon": "📚",
+    "links": [
+      { "name": "MDN Web Docs", "url": "https://developer.mozilla.org", "desc": "Web 开发权威指南" },
+      { "name": "Coursera", "url": "https://www.coursera.org", "desc": "在线课程平台" }
+    ]
+  }
+]
