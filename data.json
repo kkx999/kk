@@ -1,19 +1,18 @@
 [
   {
-    "category": "AI 助手 & 黑科技",
+    "category": "AI 助手",
     "icon": "🤖",
     "links": [
       {
-        "name": "ChatGPT",
-        "url": "https://chat.openai.com",
-        "desc": "OpenAI 最强 AI",
+        "name": "Gemini",
+        "url": "https://gemini.google.com",
+        "desc": "谷歌 最强 AI",
         "new": true
       },
       {
-        "name": "Claude 3",
-        "url": "https://claude.ai",
-        "desc": "更懂中文的 AI",
-        "new": true
+        "name": "ChatGPT",
+        "url": "https://chat.openai.com",
+        "desc": "OpenAI"
       },
       {
         "name": "Midjourney",
@@ -23,26 +22,12 @@
       {
         "name": "Kimi 智能助手",
         "url": "https://kimi.moonshot.cn",
-        "desc": "支持超长文本分析",
-        "new": true
+        "desc": "支持超长文本分析"
       },
       {
         "name": "Suno",
         "url": "https://suno.com",
-        "desc": "AI 音乐生成神器",
-        "new": true
-      },
-      {
-        "name": "Kimi 智能助手",
-        "url": "https://kimi.moonshot.cn",
-        "desc": "支持超长文本分析",
-        "new": true
-      },
-      {
-        "name": "Kimi 智能助手",
-        "url": "https://kimi.moonshot.cn",
-        "desc": "支持超长文本分析",
-        "new": true
+        "desc": "AI 音乐生成神器"
       }
     ]
   },
